@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="bottom"
+	android:orientation="vertical">
+
+	<EditText
+		android:layout_height="match_parent"
+		android:inputType="textMultiLine"
+		android:ems="10"
+		android:layout_width="match_parent"
+		android:layout_weight="2"
+		android:id="@+id/Text"
+		android:gravity="top|left"
+		android:hint="在此处复制粘贴....默认解码(下面的第一个按钮是编码模式开关)"
+		android:textSize="9sp"/>
+
+	<LinearLayout
+		android:layout_height="43dp"
+		style="?android:attr/buttonBarStyle"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:layout_weight="0.1">
+
+		<ToggleButton
+			android:layout_height="match_parent"
+			android:layout_width="wrap_content"
+			android:id="@+id/isEncode"/>
+
+		<Button
+			android:layout_height="match_parent"
+			android:text="操作"
+			android:layout_width="wrap_content"
+			android:id="@+id/operate_default"/>
+
+		<Button
+			android:layout_height="match_parent"
+			android:text="高级"
+			android:layout_width="wrap_content"
+			android:id="@+id/operate_advance"/>
+
+		<EditText
+			android:layout_height="match_parent"
+			android:inputType="number"
+			android:ems="10"
+			android:layout_width="wrap_content"
+			android:hint="自动多次操作"
+			android:id="@+id/times"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+
