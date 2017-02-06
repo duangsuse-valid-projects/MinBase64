@@ -4,11 +4,19 @@
 ##安装
 直接使用`Android`提供的图形apk安装器即可
 ##使用
-按照应用内提示即可:pill:
+按照应用内提示即可:pill:<br>
+
 
 支持底层|状态
---|--
-rust编解码器集装箱 | *目前不支持*
-android工具集 | 支持
+ ---|---
+ rust编解码器集装箱 |*目前不支持*
+ android.util.Base64|支持
+ 强行推广 :sparkles:
+ ![胖的成图标包](http://image.coolapk.com/apk_logo/2017/0203/PDCE59BBEE6A087E58C85512x512-28429-for-110125-o_1b7vps9jljmd8gouk31hpv1g6iq-uid-531994.png)
+ 
+# 最后:TODO
 
-
+- [ ] 与github同步进度
+ - [ ] 完成开发
+ - [ ] 发布酷安
+ - [ ] 增加基于rust语言编译二进制crate编解码支持
