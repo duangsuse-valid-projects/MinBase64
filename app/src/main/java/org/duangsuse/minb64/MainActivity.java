@@ -25,6 +25,7 @@ public class MainActivity extends Activity
 		Button isEncode = (Button)findViewById(R.id.isEncode);
 		Button mDefault = (Button)findViewById(R.id.operate_default);
 		Button mAdvance = (Button)findViewById(R.id.operate_advance);
+		final String DialogTitle = getResources().getString(R.string.dialog_advance);
 		//End declaration
 		mDefault.setOnClickListener(new OnClickListener(){
 			@Override
@@ -36,7 +37,7 @@ public class MainActivity extends Activity
 			@Override
 			public void onClick(View v){
 				//Builder的代码是抄的...感谢开源中国 :smirk:
-				new AlertDialog.Builder(mContext).setTitle("请选择编解码参数").setIcon(
+				new AlertDialog.Builder(mContext).setTitle(DialogTitle).setIcon(
 					     android.R.drawable.ic_media_play).setItems(
 					     new String[] { "Default" , "URL_safe", "no_wrap" , "no_close" , "no_padding" , "CRLF" },
 					     new DialogInterface.OnClickListener() {
@@ -58,7 +59,7 @@ public class MainActivity extends Activity
 									}
 							       dialog.dismiss();
 						      }
-					     }).setNegativeButton("取消", null).show();
+					     }).setNegativeButton(android.R.string.cancel, null).show();
 			}
 		});
 	}

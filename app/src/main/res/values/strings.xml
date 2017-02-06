@@ -2,6 +2,10 @@
 <resources>
 
     <string name="app_name">MinBase64</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="texthint">在此处复制粘贴....默认解码(下面的第一个按钮是编码模式开关)</string>
+	<string name="btn_operate_text">操作</string>
+	<string name="btn_advance">高级</string>
+	<string name="loopedencode">自动叠加操作</string>
+	<string name="dialog_advance">请选择编解码器操作参数</string>
 
 </resources>
