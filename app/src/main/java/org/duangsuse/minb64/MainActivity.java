@@ -17,7 +17,7 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
-		//this.getActionBar().hide(); //使用主题的方法实现了
+		//this.getActionBar().hide(); //使用特性的方法实现了
 		int color = Color.parseColor("#e8e8e8");
 		setColor(this , color); //这段调用的方法什么的都是我抄的.....感谢源:http://m.open-open.com/m/lib/view/1455584716230.html
 		Main();

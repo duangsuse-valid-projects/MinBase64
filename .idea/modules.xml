@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MinBase64.iml" filepath="$PROJECT_DIR$/MinBase64.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/minbase64.iml" filepath="$PROJECT_DIR$/minbase64.iml" />
     </modules>
   </component>
 </project>
