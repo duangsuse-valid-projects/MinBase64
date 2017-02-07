@@ -20,7 +20,7 @@ public class MainActivity extends Activity
 	void Main(){
 		//Begin declaration
 		final Context mContext = this;
-		TextView mText = (TextView)findViewById(R.id.Text);
+		final TextView mText = (TextView)findViewById(R.id.Text);
 		TextView mLoopCoder = (TextView)findViewById(R.id.times);
 		Button isEncode = (Button)findViewById(R.id.isEncode);
 		Button mDefault = (Button)findViewById(R.id.operate_default);
@@ -30,7 +30,7 @@ public class MainActivity extends Activity
 		mDefault.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v){
-				Toast.makeText(mContext,Operator("gg",2,true),Toast.LENGTH_SHORT).show();
+				//Toast.makeText(mContext,Operator("gg",2,true),Toast.LENGTH_SHORT).show();
 			}
 		});
 		mAdvance.setOnClickListener(new OnClickListener(){
@@ -45,6 +45,7 @@ public class MainActivity extends Activity
 									switch (which){
 										case 0:
 											Toast.makeText(mContext,"Default",Toast.LENGTH_LONG).show();
+											mText.setText(Operator(mText.getText().toString(),Base64.DEFAULT,true));
 											break;
 										case 1:
 											break;
@@ -70,7 +71,9 @@ public class MainActivity extends Activity
 			return ret;
 		}
 		else{
-			return "";
+			byte[] decoded = Base64.decode(input,flag);
+			String ret = decoded.toString();
+			return ret;
 		}
 		//return "It Works! Your option: "+flag;
 	}
