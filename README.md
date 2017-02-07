@@ -26,6 +26,6 @@ http://dashboard.flow.ci/projects/5898a0faef2cb06eff25626d/jobs
 # 最后:TODO
 
 - [x] 与github同步进度
- - [ ] 完成开发
+ - [x] 完成开发
  - [ ] 发布酷安
  - [ ] 增加基于rust语言编译二进制crate编解码支持

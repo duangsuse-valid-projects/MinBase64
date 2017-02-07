@@ -8,6 +8,7 @@ import android.content.*;
 import android.util.Base64;
 import android.view.View.*;
 import android.graphics.*;
+import android.mtp.*;
 
 public class MainActivity extends Activity 
 {
@@ -17,22 +18,16 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
-		//this.getActionBar().hide(); //使用主题的方法实现了
+		//this.getActionBar().hide(); //使用特性的方法实现了
 		int color = Color.parseColor("#e8e8e8");
 		setColor(this , color); //这段调用的方法什么的都是我抄的.....感谢源:http://m.open-open.com/m/lib/view/1455584716230.html
 		Main();
-	}
-	public void loopcoder(String str,int flag,int t){
-		for (int i=0;i<t;i++){
-			
-		}
 	}
 	void Main(){
 		//Begin declaration
 		final Context mContext = this;
 		final TextView mText = (TextView)findViewById(R.id.Text);
-		TextView mLoopCoder = (TextView)findViewById(R.id.times);
-		//Button isEncode = (Button)findViewById(R.id.isEncode); 采用了更好的交互方法，这种方法会用在tiny分支里以减少体积。
+		//Button isEncode = (Button)findViewById(R.id.isEncode); 采用了更好的交互方法，这种方法在tiny分支里不会使用以减少体积。
 		Button mDefault = (Button)findViewById(R.id.operate_default);
 		Button mAdvance = (Button)findViewById(R.id.operate_advance);
 		final String DialogTitle = getResources().getString(R.string.dialog_advance);
@@ -47,16 +42,15 @@ public class MainActivity extends Activity
 			@Override
 			public boolean onLongClick(View v) {
 				mText.setText(Operator(mText.getText().toString(),Base64.DEFAULT,true));
-				return false;
+				return true;
 			}
 		});
 		mAdvance.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				//Builder的代码是抄的...感谢开源中国 :smirk:
-				String theme = getResources().getString(R.string.theme);
 				final boolean isencode = false;
-				final String[] choice = new String[]{"Default", "URL_safe", "no_wrap", "no_close", "no_padding", "CRLF", theme};
+				final String[] choice = new String[]{"Default", "URL_safe", "no_wrap", "no_close", "no_padding", "CRLF" };
 				new AlertDialog.Builder(mContext).setTitle(DialogTitle).setIcon(
 						android.R.drawable.ic_media_play).setItems(choice,
 						new DialogInterface.OnClickListener() {
@@ -68,23 +62,23 @@ public class MainActivity extends Activity
 										break;
 									case 1:
 										Toast.makeText(mContext, choice[1], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										mText.setText(Operator(mText.getText().toString(), Base64.URL_SAFE, isencode));
 										break;
 									case 2:
 										Toast.makeText(mContext, choice[2], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										mText.setText(Operator(mText.getText().toString(), Base64.NO_WRAP, isencode));
 										break;
 									case 3:
 										Toast.makeText(mContext, choice[3], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										mText.setText(Operator(mText.getText().toString(), Base64.NO_CLOSE, isencode));
 										break;
 									case 4:
 										Toast.makeText(mContext, choice[4], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										mText.setText(Operator(mText.getText().toString(), Base64.NO_PADDING, isencode));
 										break;
 									case 5:
 										Toast.makeText(mContext, choice[5], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										mText.setText(Operator(mText.getText().toString(), Base64.CRLF, isencode));
 										break;
 									case 6:
 										Toast.makeText(mContext, choice[6], Toast.LENGTH_SHORT).show();
@@ -112,43 +106,44 @@ public class MainActivity extends Activity
 										break;
 									case 1:
 										Toast.makeText(mContext, choice[1], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										mText.setText(Operator(mText.getText().toString(), Base64.URL_SAFE, isencode));
 										break;
 									case 2:
 										Toast.makeText(mContext, choice[2], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										mText.setText(Operator(mText.getText().toString(), Base64.NO_WRAP, isencode));
 										break;
 									case 3:
 										Toast.makeText(mContext, choice[3], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										mText.setText(Operator(mText.getText().toString(), Base64.NO_CLOSE, isencode));
 										break;
 									case 4:
 										Toast.makeText(mContext, choice[4], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										mText.setText(Operator(mText.getText().toString(), Base64.NO_PADDING, isencode));
 										break;
 									case 5:
 										Toast.makeText(mContext, choice[5], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										mText.setText(Operator(mText.getText().toString(), Base64.CRLF, isencode));
 										break;
 								}
 								dialog.dismiss();
 							}
 						}).setNegativeButton(android.R.string.cancel, null).show();
-				return false;
+				return true;
 			}
 		});
 	}
 	//这个函数才是真理啊！
 	String Operator(String input,int flag,boolean isEncode){
 		if (isEncode){
-			byte[] mByte = input.getBytes();
-			String ret = Base64.encodeToString(mByte,flag);
-			return ret;
+			return Base64.encodeToString(input.getBytes(),flag);
 		}
 		else{
-			byte[] decoded = Base64.decode(input,flag);
-			String ret = decoded.toString();
-			return ret;
+			byte[] decoded;
+			try{decoded = Base64.decode(input,flag);//开始解码一直强行停止，还好有基础，知道要写错误处理(于是花了5分钟上网找写法#(喷))
+			}catch(Exception e){
+				return new String("exception");
+				}
+			return new String(decoded);
 		}
 		//return "It Works! Your option: "+flag;
 	}
