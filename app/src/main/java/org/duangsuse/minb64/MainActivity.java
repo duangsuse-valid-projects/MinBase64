@@ -19,12 +19,20 @@ public class MainActivity extends Activity
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
 		//this.getActionBar().hide(); //使用特性的方法实现了
-		int color = Color.parseColor("#e8e8e8");
+		int color = android.R.color.background_light;
 		setColor(this , color); //这段调用的方法什么的都是我抄的.....感谢源:http://m.open-open.com/m/lib/view/1455584716230.html
 		Main();
 	}
 	void Main(){
 		//Begin declaration
+		final String[] s = new String[]{
+			"Default","URL_safe","no_wrap","no_close","no_padding","CRLF"
+		};
+		final int[] m = new int[]{
+			//default urlsafe nowrap noclose nopadding crlf
+			Base64.DEFAULT , Base64.URL_SAFE , Base64.NO_WRAP , Base64.NO_CLOSE , Base64.NO_PADDING , Base64.CRLF
+		};
+		
 		final Context mContext = this;
 		final TextView mText = (TextView)findViewById(R.id.Text);
 		//Button isEncode = (Button)findViewById(R.id.isEncode); 采用了更好的交互方法，这种方法在tiny分支里不会使用以减少体积。
@@ -35,13 +43,13 @@ public class MainActivity extends Activity
 		mDefault.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				mText.setText(Operator(mText.getText().toString(),Base64.DEFAULT,false));
+				mText.setText(Operator(mText.getText().toString(),m[1],false));
 			}
 		});
 		mDefault.setOnLongClickListener(new OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
-				mText.setText(Operator(mText.getText().toString(),Base64.DEFAULT,true));
+				mText.setText(Operator(mText.getText().toString(),m[1],true));
 				return true;
 			}
 		});
@@ -50,38 +58,38 @@ public class MainActivity extends Activity
 			public void onClick(View v) {
 				//Builder的代码是抄的...感谢开源中国 :smirk:
 				final boolean isencode = false;
-				final String[] choice = new String[]{"Default", "URL_safe", "no_wrap", "no_close", "no_padding", "CRLF" };
+				//final String[] choice = new String[]{"Default", "URL_safe", "no_wrap", "no_close", "no_padding", "CRLF" };
 				new AlertDialog.Builder(mContext).setTitle(DialogTitle).setIcon(
-						android.R.drawable.ic_media_play).setItems(choice,
+						android.R.drawable.ic_media_play).setItems(s,
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int which) {
 								switch (which) {
 									case 0:
-										Toast.makeText(mContext, choice[0], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										//Toast.makeText(mContext, choice[0], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[0], isencode));
 										break;
 									case 1:
-										Toast.makeText(mContext, choice[1], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.URL_SAFE, isencode));
+										//Toast.makeText(mContext, choice[1], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[1], isencode));
 										break;
 									case 2:
-										Toast.makeText(mContext, choice[2], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.NO_WRAP, isencode));
+										//Toast.makeText(mContext, choice[2], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[2], isencode));
 										break;
 									case 3:
-										Toast.makeText(mContext, choice[3], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.NO_CLOSE, isencode));
+										//Toast.makeText(mContext, choice[3], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[3], isencode));
 										break;
 									case 4:
-										Toast.makeText(mContext, choice[4], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.NO_PADDING, isencode));
+										//Toast.makeText(mContext, choice[4], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[4], isencode));
 										break;
 									case 5:
-										Toast.makeText(mContext, choice[5], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.CRLF, isencode));
+										//Toast.makeText(mContext, choice[5], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[5], isencode));
 										break;
 									case 6:
-										Toast.makeText(mContext, choice[6], Toast.LENGTH_SHORT).show();
+										//Toast.makeText(mContext, choice[6], Toast.LENGTH_SHORT).show();
 										break;
 								}
 								dialog.dismiss();
@@ -94,35 +102,35 @@ public class MainActivity extends Activity
 			//注：我是由于一些比较mengbi的原因被迫复制粘贴代码的，，，请求大神给予解决方案（功能一样，为什么要抄一遍来增加体积？）
 			public boolean onLongClick(View view) {
 				final boolean isencode = true;
-				final String[] choice = new String[]{"Default", "URL_safe", "no_wrap", "no_close", "no_padding", "CRLF" };
+				//final String[] choice = new String[]{"Default", "URL_safe", "no_wrap", "no_close", "no_padding", "CRLF" };
 				new AlertDialog.Builder(mContext).setTitle(DialogTitle+"(Encode Mode)").setIcon(
-						android.R.drawable.ic_media_pause).setItems(choice,
+						android.R.drawable.ic_media_pause).setItems(s,
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int which) {
 								switch (which) {
 									case 0:
-										Toast.makeText(mContext, choice[0], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.DEFAULT, isencode));
+										//Toast.makeText(mContext, choice[0], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[0], isencode));
 										break;
 									case 1:
-										Toast.makeText(mContext, choice[1], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.URL_SAFE, isencode));
+										//Toast.makeText(mContext, choice[1], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[1], isencode));
 										break;
 									case 2:
-										Toast.makeText(mContext, choice[2], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.NO_WRAP, isencode));
+										//Toast.makeText(mContext, choice[2], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[2], isencode));
 										break;
 									case 3:
-										Toast.makeText(mContext, choice[3], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.NO_CLOSE, isencode));
+										//Toast.makeText(mContext, choice[3], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[3], isencode));
 										break;
 									case 4:
-										Toast.makeText(mContext, choice[4], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.NO_PADDING, isencode));
+										//Toast.makeText(mContext, choice[4], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[4], isencode));
 										break;
 									case 5:
-										Toast.makeText(mContext, choice[5], Toast.LENGTH_SHORT).show();
-										mText.setText(Operator(mText.getText().toString(), Base64.CRLF, isencode));
+										//Toast.makeText(mContext, choice[5], Toast.LENGTH_SHORT).show();
+										mText.setText(Operator(mText.getText().toString(), m[5], isencode));
 										break;
 								}
 								dialog.dismiss();
@@ -139,9 +147,10 @@ public class MainActivity extends Activity
 		}
 		else{
 			byte[] decoded;
-			try{decoded = Base64.decode(input,flag);//开始解码一直强行停止，还好有基础，知道要写错误处理(于是花了5分钟上网找写法#(喷))
+			try{decoded = Base64.decode(input,flag);//开始写这个的时候解码一直强行停止，还好有基础，知道要写错误处理(于是花了5分钟上网找写法#(喷))
 			}catch(Exception e){
-				return new String("exception");
+				Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT);
+				return new String("E");
 				}
 			return new String(decoded);
 		}
