@@ -13,8 +13,7 @@ CI服务由__flow.ci&老T__提供:heart:
 Flow.ci|Travis.ci
 http://dashboard.flow.ci/projects/5898a0faef2cb06eff25626d/jobs
 
-[![t]](https://travis-ci.org/pigfromChina/MinBase64)
-[t]:(https://api.travis-ci.org/pigfromChina/MinBase64.svg?branch=master)
+[![Build Status](https://travis-ci.org/pigfromChina/MinBase64.svg?branch=master)](https://travis-ci.org/pigfromChina/MinBase64)
 
 底层|状态
  ---|---
