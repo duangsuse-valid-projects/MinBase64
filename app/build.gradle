@@ -8,8 +8,8 @@ android {
         applicationId "org.duangsuse.minb64"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 5ruR56i9
-        versionName "1.1"
+        versionCode 1
+        versionName 1.0
     }
     buildTypes {
         release {
