@@ -10,12 +10,13 @@
 按照应用内提示即可:pill:<br>
 ##项目构建状态
 CI服务由__flow.ci&老T__提供:heart:
+Flow.ci|Travis.ci
 http://dashboard.flow.ci/projects/5898a0faef2cb06eff25626d/jobs
-[![t]](https://travis-ci.org/pigfromChina/MinBase64)
-[t]:
-(https://api.travis-ci.org/pigfromChina/MinBase64.svg?branch=master)
 
-支持底层|状态
+[![t]](https://travis-ci.org/pigfromChina/MinBase64)
+[t]:(https://api.travis-ci.org/pigfromChina/MinBase64.svg?branch=master)
+
+底层|状态
  ---|---
  rust编解码器集装箱 |*目前不支持*
  android.util.Base64|支持
