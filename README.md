@@ -14,7 +14,7 @@ Flow.ci|Travis.ci
 
 http://dashboard.flow.ci/projects/5898a0faef2cb06eff25626d/jobs
 
-[![Build Status](https://travis-ci.org/pigfromChina/MinBase64.svg?branch=master)](https://travis-ci.org/pigfromChina/MinBase64)
+[![Build Status](https://travis-ci.org/pigfromChina/MinBase64.svg?branch=tiny)](https://travis-ci.org/pigfromChina/MinBase64)
 
 底层|状态
  ---|---
