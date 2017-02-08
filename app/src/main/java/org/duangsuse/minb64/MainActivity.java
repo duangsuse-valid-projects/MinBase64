@@ -149,7 +149,7 @@ public class MainActivity extends Activity
 			byte[] decoded;
 			try{decoded = Base64.decode(input,flag);//开始写这个的时候解码一直强行停止，还好有基础，知道要写错误处理(于是花了5分钟上网找写法#(喷))
 			}catch(Exception e){
-				Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT);
+				//Toast.makeText(getApplicationContext(),"Err",Toast.LENGTH_SHORT);
 				return new String("E");
 				}
 			return new String(decoded);
